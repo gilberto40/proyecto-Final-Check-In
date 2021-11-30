@@ -46,6 +46,13 @@ class TakePhotoActivity : AppCompatActivity() {
         btn_next.setOnClickListener {
             setNextLayout()
         }
+
+        val btn_des = findViewById<Button>(R.id.btn_desloguear)
+        btn_des.setOnClickListener{
+            SessionVariable.sessionVar = false;
+            val layout = Intent(this, MainActivity::class.java )
+            startActivity(layout)
+        }
     }
 
     override fun onStart() {

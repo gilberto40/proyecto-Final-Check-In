@@ -29,7 +29,7 @@ interface ApiService {
     fun validarUsuarioByEmailYCod(@Path("idHotel") id: Int, @Path("codReserva") codReserva: Int, @Body post: BodyValidator?): Call<Post>
 
     @Multipart
-    @POST("/{idHotel}/{codReserva}/actualizar/foto")
+    @POST("/{idHotel}/{codReserva}/actualizar/false")
     fun actualizarReserva(
         @Path("idHotel") id: Int,
         @Path("codReserva") codReserva: Int,
@@ -38,4 +38,5 @@ interface ApiService {
         @Part("numero") numero: RequestBody?,
         @Part("nombre") nombre: RequestBody?,
         @Part("apellido") apellido: RequestBody?)
+
 }

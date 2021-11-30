@@ -7,6 +7,17 @@
     android:background="@drawable/background_register"
     tools:context=".RegisterActivity">
 
+    <Button
+        android:id="@+id/btn_desloguear"
+        android:layout_width="98dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Desloguear"
+        android:textSize="9dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/text_document_number"
         android:layout_width="match_parent"

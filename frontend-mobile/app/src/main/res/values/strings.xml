@@ -2,9 +2,12 @@
     <string name="app_name">CheckIn</string>
     <string-array name="tipo_document" >
         <item>DNI</item>
-        <item>Libreta de enrolamiento</item>
-        <item>Pasaporte</item>
     </string-array>
+
+    <string-array name="hoteles" >
+        <item>Hotel Test</item>
+    </string-array>
+
     <string name="error_data">Error en tipo de datos</string>
     <string name="error_empty">Llenar todos los campos por favor</string>
     <string name="error_data_invalid">No hemos podido validar sus datos</string>
