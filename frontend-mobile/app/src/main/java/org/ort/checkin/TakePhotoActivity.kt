@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import java.io.ByteArrayOutputStream
 import android.util.Base64
 import android.view.View
+import org.ort.checkin.com.ConectionApi
 import java.util.*
 
 
@@ -21,12 +22,15 @@ class TakePhotoActivity : AppCompatActivity() {
 
     private val cameraRequest = 1888
     lateinit var imageView: ImageView
+    lateinit var img64: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.take_photo)
 
         val btn_next = findViewById<Button>(R.id.btn_complete_register)
+        val tipo = getIntent().getExtras()?.getString("tipo");
+        val numero = getIntent().getExtras()?.getString("numero");
 
         if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.CAMERA)
             == PackageManager.PERMISSION_DENIED)
@@ -44,12 +48,14 @@ class TakePhotoActivity : AppCompatActivity() {
         }
 
         btn_next.setOnClickListener {
+            val conn = ConectionApi()
+            conn.updateUser(img64, tipo!!, numero!!)
             setNextLayout()
         }
 
         val btn_des = findViewById<Button>(R.id.btn_desloguear)
         btn_des.setOnClickListener{
-            SessionVariable.sessionVar = false;
+            SessionVariable.sessionVar = false
             val layout = Intent(this, MainActivity::class.java )
             startActivity(layout)
         }
@@ -70,7 +76,7 @@ class TakePhotoActivity : AppCompatActivity() {
             val photoShow: Bitmap = data?.extras?.get("data") as Bitmap
 
             imageView.setImageBitmap(photoShow)
-            println(encodeImage(photoShow))
+            img64 = encodeImage(photoShow)!!
 
         }
     }

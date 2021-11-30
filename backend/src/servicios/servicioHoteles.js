@@ -10,7 +10,7 @@ class ServicioHoteles {
 
     constructor() {
         this.hotelesManager = new GestorHoteles()
-        this.fiwareService = new AxiosFiware(getFiwareCNX())
+        //this.fiwareService = new AxiosFiware(getFiwareCNX())
     }
 
     /**
@@ -20,7 +20,7 @@ class ServicioHoteles {
     async agregar(hotel) {
         try{    
             await this.hotelesManager.add(hotel)
-            this.fiwareService.addEntity(hotel)
+           // this.fiwareService.addEntity(hotel)
         } catch (er) {
             throw new Error("No se pudo agregar al hotel.")
         }          
@@ -111,21 +111,22 @@ class ServicioHoteles {
     */
     async actualizarReserva(id, codigo, isWeb, data, estado) {
         var hotel = await this.buscarPorId(id)
+        console.log(hotel)
         var reservaEncontrada = null        
         var index = 0
-    
+        console.log("trata")
         if(hotel.reservas.length > 0){
-
+            console.log("1")
             do{
                 const reserva = hotel.reservas[index]
                 
                 if(reserva.codigo == codigo){
-
+                    console.log("2")
                     if(estado === null){
 
                         //Update hecho por web
                         if(isWeb){
-                            
+                            console.log("3")
                             if(data.documento){
                                 //camino no feliz
                                 reserva.huesped.foto = data.foto
@@ -151,7 +152,7 @@ class ServicioHoteles {
                         reserva.estado = estado   
                     }
 
-                    this.fiwareService.modifyEntity(hotel.id,reserva.codigo,reserva.estado)
+                    //this.fiwareService.modifyEntity(hotel.id,reserva.codigo,reserva.estado)
                     this.hotelesManager.updateById(hotel)
                     reservaEncontrada = reserva
                 }
@@ -210,7 +211,7 @@ class ServicioHoteles {
     */
     async validarHuesped(id, codigo, email){
         var reserva = await this.buscarReserva(id, codigo)
-
+        console.log("valida")
         if(reserva !== null){
             if(reserva.huesped.email === email){
                 

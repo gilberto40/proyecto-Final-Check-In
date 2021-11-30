@@ -62,7 +62,7 @@ class RegisterActivity : AppCompatActivity() {
                     err.visibility = View.VISIBLE
                     err.text = getString(R.string.error_data)
                 }else{
-                    setNextLayout(tipo, numero.toString().toInt())
+                    setNextLayout(tipo, numero.toString())
                 }
 
             }else {
@@ -72,7 +72,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun setNextLayout(tipo: String, numero: Int) {
+    private fun setNextLayout(tipo: String, numero: String) {
         val layout = Intent(this,  InfoPhotoActivity::class.java )
         layout.putExtra("tipo", tipo);
         layout.putExtra("numero", numero);

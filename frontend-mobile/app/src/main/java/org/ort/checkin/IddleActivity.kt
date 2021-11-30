@@ -14,6 +14,7 @@ class IddleActivity : AppCompatActivity() {
         val btn_des = findViewById<Button>(R.id.btn_desloguear)
         btn_des.setOnClickListener{
             SessionVariable.sessionVar = false;
+            SessionVariable.finalizado = false;
             val layout = Intent(this, MainActivity::class.java )
             startActivity(layout)
         }

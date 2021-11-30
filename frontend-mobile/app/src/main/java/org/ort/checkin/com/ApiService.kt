@@ -28,15 +28,12 @@ interface ApiService {
     @POST("{idHotel}/{codReserva}/validar")
     fun validarUsuarioByEmailYCod(@Path("idHotel") id: Int, @Path("codReserva") codReserva: Int, @Body post: BodyValidator?): Call<Post>
 
-    @Multipart
-    @POST("/{idHotel}/{codReserva}/actualizar/false")
+    @PUT("{idHotel}/{codReserva}/actualizar/{isWeb}")
     fun actualizarReserva(
         @Path("idHotel") id: Int,
         @Path("codReserva") codReserva: Int,
-        @Part filePart: MultipartBody.Part?,
-        @Part("tipo") tipo: RequestBody?,
-        @Part("numero") numero: RequestBody?,
-        @Part("nombre") nombre: RequestBody?,
-        @Part("apellido") apellido: RequestBody?)
+        @Path("isWeb")  isWeb: Boolean,
+        @Body post: BodyActualizar?
+        ):Call<Post>
 
 }

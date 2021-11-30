@@ -47,5 +47,22 @@ class ConectionApi {
         })
     }
 
+    fun updateUser(foto: String, tipo: String, documento: String) {
+        var post: BodyActualizar? = BodyActualizar(foto,tipo,documento)
+        var responses: Post?
+
+        service.actualizarReserva(0, 0,true , post).enqueue(object : Callback<Post> {
+            override fun onResponse(call: Call<Post>?, response: Response<Post>?) {
+                responses = response?.body()
+                sessionVar = responses != null
+                println("gm****************************" + Gson().toJson(responses))
+            }
+
+            override fun onFailure(call: Call<Post>?, t: Throwable?) {
+                println("porerror******")
+            }
+        })
+    }
+
 
 }
